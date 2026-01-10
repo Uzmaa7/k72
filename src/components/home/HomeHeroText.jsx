@@ -9,7 +9,7 @@ function HomeHeroText(){
             <div>
                 <div className=' flex items-center  justify-center text-[9.5vw] uppercase leading-[8vw]'>
                     qui 
-                    <div className='h-[8vw]  w-[16vw] rounded-full overflow-hidden'> <InlineVideo/> </div> 
+                    <div className='h-[7vw]  w-[16vw] -mt-3 rounded-full overflow-hidden'> <InlineVideo/> </div> 
                     génère 
                 </div>
             </div>
