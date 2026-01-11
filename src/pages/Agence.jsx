@@ -1,9 +1,29 @@
 import React, { useRef } from 'react'
 import Carl from '../assets/images/Carl_480x640.jpg'
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/all';
 
 
 function Agence() {
     const imageDivref = useRef(null);
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    useGSAP(function(){
+        gsap.to(imageDivref.current, {
+            scrollTrigger:{
+                trigger:imageDivref.current,
+                markers:true,
+                start:'top 26.5%',
+                end: 'top -115%',
+                pin:true,
+                scrub:true
+               
+            }
+        })
+    })
+
     return (
         
         <div>
