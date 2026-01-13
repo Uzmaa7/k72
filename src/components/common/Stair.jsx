@@ -2,57 +2,73 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { useRef } from 'react';
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 
 
-function Stair(){
+function Stair(props) {
 
     const stairParentRef = useRef(null);
 
-    useGSAP(function(){
+    const currentPath = useLocation().pathname
+
+    const pageRef = useRef(null)
+
+
+    useGSAP(function () {
 
         const tl = gsap.timeline();
 
-        tl.to(stairParentRef.current,{
-            display:'block'
+        tl.to(stairParentRef.current, {
+            display: 'block'
         })
 
-        tl.from('.stair',{
-            height:0,
-            stagger:{
-                amount:-0.3
+        tl.from('.stair', {
+            height: 0,
+            stagger: {
+                amount: -0.3
             }
 
         })
         tl.to('.stair', {
-            y:'100%',
-            stagger:{
-                amount:-0.3
+            y: '100%',
+            stagger: {
+                amount: -0.3
             }
 
         })
 
-        tl.to(stairParentRef.current,{
-            display:'none'
+        tl.to(stairParentRef.current, {
+            display: 'none'
         })
         tl.to('.stair', {
             y: '0%',
         })
-    })
 
-    return(
+        gsap.from(pageRef.current, {
+            opacity: 0,
+            delay: 1,
+            scale: 1.2
+        })
+    }, [currentPath])
 
-        <div ref={stairParentRef} className='h-screen w-full  fixed z-20 top-0'>
-                    
-            <div  className='h-full w-full flex '>
-                <div className='stair h-full w-1/5 bg-black'></div>
-                <div className='stair h-full w-1/5 bg-black'></div>
-                <div className='stair h-full w-1/5 bg-black'></div>
-                <div className='stair h-full w-1/5 bg-black'></div>
-                <div className='stair h-full w-1/5 bg-black'></div>
+
+    return (
+        <div>
+            <div ref={stairParentRef} className='h-screen w-full fixed z-20 top-0'>
+                <div className='h-full w-full flex'>
+                    <div className='stair h-full w-1/5 bg-black'></div>
+                    <div className='stair h-full w-1/5 bg-black'></div>
+                    <div className='stair h-full w-1/5 bg-black'></div>
+                    <div className='stair h-full w-1/5 bg-black'></div>
+                    <div className='stair h-full w-1/5 bg-black'></div>
+                </div>
+            </div>
+            <div ref={pageRef}>
+                {props.children}
             </div>
         </div>
-        
     )
 }
+
 
 export default Stair;
