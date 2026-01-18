@@ -32,41 +32,40 @@ function Agence() {
 
     ]
 
-    useGSAP(function(){
+    useGSAP(function () {
 
-
-        gsap.to(imageDivref.current, {
-
-            scrollTrigger:{
-                trigger:imageDivref.current,
-                markers:true,
-                start:'top 26.5%',
-                end: 'top -115%',
-                pin:true,
-                scrub:1,
-
-                onUpdate: (elem) => {
-                    let imgIdx;
-                    if(elem.progress < 1){
-                        imgIdx = Math.floor(elem.progress * imgArray.length)
-                    }
-                    else{
-                        imgIdx = imgArray.length-1
-                    }
-
-                    imgref.current.src = imgArray[imgIdx];
-                }
-               
-            }
-        })
+    gsap.to(imageDivref.current, {
+      scrollTrigger: {
+        trigger: imageDivref.current,
+        // markers: true,
+        start:'top -5%',
+        end: 'top -145%',
+        pin: true,
+        pinSpacing: true,
+        pinReparent: true,
+        pinType: 'transform',
+        scrub: 1, // smooth scrubbing with 1s easing
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        onUpdate: (elem) => {
+          let imageIndex;
+          if (elem.progress < 1) {
+            imageIndex = Math.floor(elem.progress * imgArray.length)
+          } else {
+            imageIndex = imgArray.length - 1
+          }
+          imgref.current.src = imgArray[imageIndex]
+        }
+      }
     })
+  })
 
 
     return (
         
         <div>
-            <div className='section1'>
-                <div ref={imageDivref} className='h-[19vw] w-[15vw] absolute top-44 rounded-3xl left-[31vw] bg-red-900 overflow-hidden'>
+            <div className='section1 relative py-1'>
+                <div ref={imageDivref} className='h-[19vw] w-[15vw] absolute top-44 rounded-3xl left-[31vw]  overflow-hidden bg-green-900'>
                     <img ref={imgref} className='h-full w-full object-cover' src="https://k72.ca/uploads/teamMembers/Carl_480x640-480x640.jpg" alt="" />
                 </div>
                 <div className='font-[font1] relative'>

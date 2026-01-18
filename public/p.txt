@@ -1,0 +1,50 @@
+Why video disappeared suddenly?
+
+The Vimeo link you used had a time-based security token
+That token expired after some time
+
+When it expired:
+The <video> tag was still rendered
+But the browser was not allowed to play the video
+So the background became black, and only text was visible
+This is why it felt like the video “suddenly” vanished even though you didn’t change your code.
+
+---Solution---------
+stopped using the video URL
+downloaded the video file
+
+This removed:
+token expiry
+network permission issues
+third-party dependency
+
+placed the video inside the public folder
+
+
+-----P2------------
+Problem
+
+A single Video component was being reused for two different purposes:
+as a full-screen background video
+as a small inline video inside the hero text
+Because the same component handled both cases, styles like rounded-full and overflow-hidden caused conflicts.
+As a result, the background video was also getting rounded, and the inline video behavior could not be controlled independently.
+
+Solution
+
+To fix this, the video functionality was separated into two components:
+BackgroundVideo → used only for the full-screen background (no rounding)
+InlineVideo → used only inside the text and styled with rounded-full and overflow-hidden
+This separation removed the styling conflict and ensured the inline video renders as rounded while keeping the background video normal.
+
+-----P3------------
+Problem Summary
+
+Red div flicker scroll karte waqt dikh raha tha.
+
+Reason: Original Code 1 me image URLs incorrect / display URLs the → images slow ya delayed load ho rahe the → initial red background visible hota tha.
+
+Solution
+
+Correct URLs: Inspect → Network → actual requested URLs use kiye.
+Result: Scroll par images smoothly change ho rahi hain, red background flicker nahi ho raha.

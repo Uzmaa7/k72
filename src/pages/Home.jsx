@@ -1,7 +1,7 @@
 import React from 'react';
-import BackgroundVideo from '../components/home/BackgroundVideo';
-import HomeBottomText from '../components/home/HomeBottomText';
-import HomeHeroText from '../components/home/HomeHeroText';
+import BackgroundVideo from '../components/Home/BackgroundVideo';
+import HomeBottomText from '../components/Home/HomeBottomText';
+import HomeHeroText from '../components/Home/HomeHeroText';
 
 function Home(){
     return(
